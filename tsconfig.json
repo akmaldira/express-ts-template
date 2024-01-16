@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es2016",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    
+    /* Modules */
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"],
+      "@config/*": ["config/*"],
+      "@controllers/*": ["controllers/*"],
+      "@entities/*": ["database/entities/*"],
+      "@database/*": ["database/*"],
+      "@dtos": ["dtos/*"],
+      "@exceptions/*": ["exceptions/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@routes/*": ["routes/*"],
+      "@services/*": ["services/*"],
+      "@utils/*": ["utils/*"],
+    },
+    "typeRoots": [
+      "node_modules/@types",
+    ],
+    "resolveJsonModule": true,
+    
+    /* JavaScript Support */
+    "allowJs": true,
+
+    /* Emit */
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./",
+    "noEmit": true,
+    "importHelpers": true,
+    
+    /* Interop Constraints */
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    "strictPropertyInitialization": false,
+    
+    /* Completeness */
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.json", "public/*", ".env"],
+  "exclude": ["node_modules", "logs", ]
+}
