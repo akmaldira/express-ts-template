@@ -1,6 +1,5 @@
 import { appConfig } from "@config/environments";
 import AppDataSource from "@database/datasource";
-import { UserRole } from "@entities/enum";
 import User from "@entities/user.entity";
 import {
   BadRequestException,
@@ -46,26 +45,17 @@ export default class AuthService {
   }
 
   private generateToken(user: User): string {
-    const token = jwt.sign({ id: user.id }, appConfig.JWT_SECRET, {
-      expiresIn: 86400,
-    });
+    const token = jwt.sign(
+      { id: user.id, role: user.role },
+      appConfig.JWT_SECRET,
+      {
+        expiresIn: 86400,
+      },
+    );
     return token;
   }
 
   private async hashPassword(password: string): Promise<string> {
     return await bcrypt.hash(password, 10);
-  }
-
-  async verifyToken(role: UserRole, token: string) {
-    try {
-      const decoded = jwt.verify(token, appConfig.JWT_SECRET) as { id: string };
-      const user = await this.repository.findOneBy({ id: decoded.id });
-      if (!user) {
-        throw new UnauthorizedException("Unauthorized");
-      }
-      return user;
-    } catch (error) {
-      throw new UnauthorizedException("Unauthorized");
-    }
   }
 }

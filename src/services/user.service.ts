@@ -2,7 +2,7 @@ import AppDataSource from "@database/datasource";
 import User from "@entities/user.entity";
 import { Repository } from "typeorm";
 
-class UserService {
+export default class UserService {
   private repository: Repository<User>;
 
   constructor() {
@@ -17,5 +17,3 @@ class UserService {
     return this.repository.findOneBy({ id });
   }
 }
-
-export default UserService;
